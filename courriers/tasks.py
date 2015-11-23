@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from django.contrib.auth import get_user_model
 from celery.task import task
 
 
@@ -6,7 +7,6 @@ from celery.task import task
 def subscribe(self, email, newsletter_list_id, lang=None, user_id=None):
     from courriers.backends import get_backend
     from courriers.models import NewsletterList
-    from courriers.compat import get_user_model
 
     User = get_user_model()
 
@@ -35,7 +35,6 @@ def subscribe(self, email, newsletter_list_id, lang=None, user_id=None):
 def unsubscribe(self, email, newsletter_list_id=None, lang=None, user_id=None):
     from courriers.backends import get_backend
     from courriers.models import NewsletterList
-    from courriers.compat import get_user_model
 
     User = get_user_model()
 

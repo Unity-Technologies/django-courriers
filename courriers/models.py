@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import django
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
@@ -37,9 +36,6 @@ class NewsletterListQuerySet(QuerySet):
 class NewsletterListManager(Manager):
     def get_queryset(self):
         return NewsletterListQuerySet(self.model)
-
-    if django.VERSION < (1, 6):
-        get_query_set = get_queryset
 
     def has_lang(self, lang):
         return self.get_queryset().has_lang(lang)
@@ -92,9 +88,6 @@ class NewsletterQuerySet(QuerySet):
 class NewsletterManager(Manager):
     def get_queryset(self):
         return NewsletterQuerySet(self.model)
-
-    if django.VERSION < (1, 6):
-        get_query_set = get_queryset
 
     def has_lang(self, lang):
         return self.get_queryset().has_lang(lang)
@@ -192,9 +185,6 @@ class NewsletterSubscriberQuerySet(QuerySet):
 class NewsletterSubscriberManager(models.Manager):
     def get_queryset(self):
         return NewsletterSubscriberQuerySet(self.model)
-
-    if django.VERSION < (1, 6):
-        get_query_set = get_queryset
 
     def subscribed(self):
         return self.get_queryset().subscribed()

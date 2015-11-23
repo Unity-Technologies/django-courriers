@@ -1,5 +1,3 @@
-import django
-
 from django.db.models.query import QuerySet as BaseQuerySet
 from django.db import models
 
@@ -29,9 +27,6 @@ class QuerySet(BaseQuerySet):
 class Manager(models.Manager):
     def get_queryset(self):
         return QuerySet(self.model)
-
-    if django.VERSION < (1, 6):
-        get_query_set = get_queryset
 
     def first(self):
         return self.get_queryset().first()
